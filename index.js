@@ -17,7 +17,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Визначаємо дозволені домени для CORS
-const allowedOrigins = ['https://965c-93-127-53-128.ngrok-free.app', 'http://localhost:3000'];
+const allowedOrigins = ['https://272d-93-127-53-128.ngrok-free.app', 'http://localhost:3000'];
 
 // Налаштовуємо CORS
 app.use(cors({
