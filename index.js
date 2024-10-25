@@ -17,7 +17,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Визначаємо дозволені домени для CORS
-const allowedOrigins = ['https://5f95-93-127-53-128.ngrok-free.app', 'http://localhost:3000'];
+const allowedOrigins = ['https://5f95-93-127-53-128.ngrok-free.app', 'http://localhost:3000', 'https://dmytrosokolovsky.github.io/react_diplom'];
 
 // Налаштовуємо CORS
 app.use(cors({
