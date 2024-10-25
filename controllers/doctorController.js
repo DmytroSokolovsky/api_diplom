@@ -31,11 +31,29 @@ const getDoctorSchedule = async (req, res) => {
       return res.status(404).json({ message: 'Лікаря не знайдено' });
     }
 
-    const availableDates = doctor.schedule.filter(day => 
-      day.time_slots.some(slot => slot.is_available)
+    const today = new Date();
+    const tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1); 
+
+    const monthAhead = new Date();
+    monthAhead.setMonth(today.getMonth() + 1); 
+
+    const formatDate = (date) => {
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      return `${day}.${month}`;
+    };
+
+    const availableDates = [];
+    for (let d = tomorrow; d <= monthAhead; d.setDate(d.getDate() + 1)) {
+      availableDates.push(formatDate(new Date(d)));
+    }
+
+    const filteredSchedule = doctor.schedule.filter(day => 
+      availableDates.includes(day.day) && day.time_slots.some(slot => slot.is_available)
     );
 
-    res.json(availableDates);
+    res.json(filteredSchedule);
   } catch (error) {
     console.error("Помилка при отриманні графіка лікаря:", error);
     res.status(500).json({ message: 'Помилка сервера при отриманні графіка лікаря' });
@@ -60,7 +78,6 @@ const getDoctorAvailableDates = async (req, res) => {
   }
 };
 
-// Отримуємо записи до лікаря на вказану дату
 const getDoctorRecordsDate = async (req, res) => {
   try {
     const doctorId = parseInt(req.params.id, 10);

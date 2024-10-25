@@ -2,6 +2,7 @@
 const { ObjectId } = require('mongodb');
 const { recordSchema } = require('../models/recordModel');
 const database = require('../config/database');
+const axios = require('axios');
 
 // Додаємо новий запис
 const addRecord = async (req, res) => {
