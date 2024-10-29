@@ -17,7 +17,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Визначаємо дозволені домени для CORS
-const allowedOrigins = ['https://828c-93-127-53-128.ngrok-free.app', 'http://localhost:3000', 'https://dmytrosokolovsky.github.io', 'https://diplom-ui-ssr-pzyd.vercel.app'];
+const allowedOrigins = ['https://dmytrosokolovsky.github.io', 'https://next-diplom.vercel.app'];
 
 // Налаштовуємо CORS
 app.use(cors({
